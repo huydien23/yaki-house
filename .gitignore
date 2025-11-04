@@ -1,0 +1,48 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Dotnet build artifacts
+/backend/src/**/bin/
+/backend/src/**/obj/
+*.nupkg
+*.snupkg
+*.lock.json
+TestResults/
+/backend/**/TestResults/
+/backend/**/PublishProfiles/
+/backend/**/Generated
+*.userprefs
+/backend/src/**/appsettings.*.json
+/backend/src/**/Properties/launchSettings.json
+
+# Frontend dependencies & builds
+/frontend/node_modules/
+/frontend/apps/**/node_modules/
+/frontend/apps/**/dist/
+/frontend/.turbo/
+/frontend/.cache/
+/frontend/.vite/
+
+# Environment & secrets
+*.env
+*.env.*
+/backend/src/**/appsettings.Development.json
+
+# Coverage / reports
+coverage/
+*.lcov
+
+# Misc
+*.bak
+*.tmp
+~$*
+
