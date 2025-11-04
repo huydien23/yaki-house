@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    @apply font-sans bg-primary-50 text-primary-900;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-gradient-to-b from-primary-50 via-primary-200 to-primary-300;
+  }
+}
+
+@layer components {
+  .pwa-shell {
+    @apply flex min-h-screen flex-col;
+  }
+
+  .top-bar {
+    @apply flex items-center justify-between gap-6 bg-primary-800 px-5 py-4 text-primary-50 shadow-floating;
+  }
+
+  .top-bar nav {
+    @apply flex gap-4 text-sm font-semibold;
+  }
+
+  .top-bar a {
+    @apply rounded-full px-3 py-1 text-primary-100 transition hover:bg-primary-700;
+  }
+
+  main {
+    @apply grid flex-1 gap-5 p-5;
+  }
+
+  .card {
+    @apply rounded-2xl border border-primary-100 bg-white/95 p-5 shadow-floating backdrop-blur-md;
+  }
+
+  .card h2 {
+    @apply mb-4 text-lg font-semibold text-primary-700;
+  }
+
+  .list {
+    @apply grid gap-3;
+  }
+
+  .list li {
+    @apply grid gap-1 rounded-xl bg-primary-100/80 px-4 py-3 text-primary-950 shadow-sm;
+  }
+
+  .list .primary {
+    @apply font-semibold text-primary-800;
+  }
+
+  .list .status {
+    @apply text-sm text-primary-600;
+  }
+
+  .stack {
+    @apply grid gap-4;
+  }
+
+  .order-card {
+    @apply rounded-2xl border border-primary-100 bg-white/95 p-4 shadow-floating;
+  }
+
+  .order-card header {
+    @apply mb-3 flex items-center justify-between text-primary-700;
+  }
+
+  .order-card ul {
+    @apply list-disc space-y-1 pl-5 text-primary-900;
+  }
+
+  .order-card footer {
+    @apply mt-3 text-sm text-primary-600;
+  }
+}
+
+@media (max-width: 640px) {
+  .top-bar {
+    @apply flex-col items-start;
+  }
+
+  .top-bar nav {
+    @apply w-full justify-between;
+  }
+}
+

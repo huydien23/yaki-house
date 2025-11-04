@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    @apply font-sans text-primary-950 bg-primary-50;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl p-6 shadow-floating;
+  }
+}
+

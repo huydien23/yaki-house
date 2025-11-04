@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    @apply font-sans text-white;
+    background: radial-gradient(circle at top, #e1f4ff 0%, #82d7ff 45%, #067cff 100%);
+  }
+
+  body {
+    @apply m-0 min-h-screen;
+  }
+}
+
+@layer components {
+  .kds-shell {
+    @apply flex min-h-screen flex-col gap-8 px-6 py-8 text-white;
+  }
+
+  .kds-shell header {
+    @apply text-center;
+  }
+
+  .kds-shell header h1 {
+    @apply font-display text-4xl font-semibold tracking-wide text-primary-50;
+  }
+
+  .kds-shell header p {
+    @apply mt-2 text-primary-100;
+  }
+
+  .kds-shell main {
+    @apply grid gap-6 md:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .ticket {
+    @apply rounded-3xl border border-white/10 bg-white/15 p-6 shadow-glow backdrop-blur-xl;
+  }
+
+  .ticket header {
+    @apply mb-5 flex items-end justify-between font-semibold;
+  }
+
+  .ticket-id {
+    @apply text-2xl text-primary-100;
+  }
+
+  .ticket-table {
+    @apply block text-sm text-primary-50/80;
+  }
+
+  .ticket-meta {
+    @apply flex items-center gap-2 text-sm;
+  }
+
+  .ticket-status {
+    @apply rounded-full bg-primary-500/40 px-3 py-1;
+  }
+
+  .ticket-time {
+    @apply font-mono text-primary-50/90;
+  }
+
+  .ticket ul {
+    @apply grid gap-3;
+  }
+
+  .ticket li {
+    @apply flex items-center gap-3 text-lg;
+  }
+
+  .ticket .qty {
+    @apply min-w-[2.5rem] rounded-lg bg-white/20 px-3 py-1 text-center font-semibold;
+  }
+
+  .ticket .name {
+    @apply flex-1;
+  }
+}
+
+@media (max-width: 768px) {
+  .kds-shell {
+    @apply px-4 py-6;
+  }
+
+  .kds-shell header h1 {
+    @apply text-3xl;
+  }
+}
+
