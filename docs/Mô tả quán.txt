@@ -1,0 +1,108 @@
+﻿1. Cấu Trúc Menu & Bảng Giá Vé
+Nhà hàng phục vụ 3 loại vé buffet chính và 1 vé buffet phụ (add-on) với mức giá chi tiết như sau:
+• Vé Buffet Nướng: 175.000 VNĐ/khách
+• Vé Buffet Nướng Lẩu: 199.000 VNĐ/khách
+• Vé Buffet Trẻ Em: 79.000 VNĐ/khách
+• Vé Buffet Tráng Miệng (Add-on): 45.000 VNĐ/khách
+
+2. Quy Định & Chính Sách Áp Dụng Vé
+Chính sách giá vé trẻ em
+Giá vé trẻ em được áp dụng dựa trên chiều cao:
+• Dưới 1m: Miễn phí vé buffet (Nướng/Nướng Lẩu).
+o Lưu ý: Vẫn tính phí vé Buffet Tráng Miệng (45.000 VNĐ) nếu trẻ sử dụng.
+• Từ 1m - 1.3m: Áp dụng Vé Buffet Trẻ Em (79.000 VNĐ).
+• Trên 1.3m: Áp dụng giá vé người lớn.
+Quy định chung tại bàn
+• Tính đồng nhất: Mỗi bàn bắt buộc sử dụng chung 1 loại vé buffet chính (175k hoặc 199k) cho tất cả khách người lớn.
+• Nâng cấp vé: Khách hàng được phép nâng cấp từ vé Buffet Nướng (175k) lên vé Buffet Nướng Lẩu (199k).
+Quy định vé tráng miệng & đồ uống
+• Khách đã mua vé Buffet Tráng Miệng (45k) vẫn có thể gọi thêm đồ uống từ menu nước riêng (tính phí riêng).
+• Trường hợp khách đang dùng nước riêng (gọi món) và muốn chuyển sang sử dụng Buffet Tráng Miệng, toàn bộ thành viên tại bàn phải đồng ý đăng ký và thanh toán vé Buffet Tráng Miệng.
+
+3. Các Chương Trình Ưu Đãi
+Lưu ý quan trọng: Tất cả các chương trình khuyến mãi KHÔNG áp dụng vào các ngày cuối tuần (Thứ 7, Chủ Nhật) và các ngày Lễ, Tết.
+Ưu đãi theo nhóm (Áp dụng trong thời gian quy định)
+• Đi 4 Tính 3: Áp dụng lũy tiến (ví dụ: 8 tính 6, 12 tính 9,...).
+• Giảm giá theo nhóm: Đi 4 giảm 100.000 VNĐ (ví dụ: 8 giảm 200.000 VNĐ,...).
+Ưu đãi hàng tuần (Áp dụng từ Thứ 2 - Thứ 6)
+• Đặt bàn trước: Giảm 50.000 VNĐ cho nhóm đặt trước từ 4 khách.
+• Giờ Vàng (11:00 - 17:00): Giảm ngay 20.000 VNĐ/người (áp dụng trực tiếp trên giá vé 175k và 199k).
+Ghi chú: Các loại ưu đãi được thiết lập trong hệ thống order như một loại món ăn hoặc mã giảm giá để nhân viên áp dụng vào hóa đơn.
+
+4. Sơ Đồ Bàn & Quản Lý Vận Hành
+Quán gồm 2 tầng với tổng số 27 bàn, được đánh số theo quy tắc:
+• Tầng 1: 13 bàn (số từ 101 - 114, bỏ qua số 113).
+• Tầng 2: 14 bàn (số từ 201 - 215, bỏ qua số 213).
+Quy trình quản lý bàn
+• Bàn đã đặt trước sẽ được nhân viên cập nhật trạng thái "Đã Đặt".
+• Nếu khách đến trễ 15-30 phút (tùy thuộc vào xác nhận của quản lý), bàn sẽ được giải phóng về trạng thái "Bàn Trống" để phục vụ khách vãng lai.
+Sức chứa
+• Bàn 2 chỗ: 206, 207.
+• Bàn 6 chỗ: 105, 107, 108, 201, 202, 214.
+• Bàn 4 chỗ: Tất cả các bàn còn lại.
+Sơ đồ bố trí (Layout)
+Tầng 1
+
+View bờ hồ105106107Cầu thang104112114108103110111Quầy line102109Bar101NVSBếp thịtBếp rauBếp nóng
+
+
+
+
+
+
+
+
+Tầng 2
+207206View bờ hồ208205209204210203211214202112215201                   
+
+
+
+
+
+
+Quy định ghép bàn
+• Ghép 2 bàn:
+o (102 - 109)
+o (106 - 107)
+o (110 - 111)
+o (112 - 114)
+o (201 - 215)
+o (202 - 214)
+• Ghép 3 bàn:
+o (103 - 110 - 111)
+o (104 - 112 - 114)
+o (105 - 106 - 107)
+
+5. Cấu Trúc Bếp & Quầy Bar
+Phân khu Bếp (Back of House)
+Hệ thống bếp được chia 3 khu vực chuyên biệt, mỗi khu vực có máy in bill riêng để nhận order tương ứng:
+• Bếp Thịt: Chuyên chế biến các món đồ tươi, sống (thịt, hải sản...).
+• Bếp Nóng: Chuyên chế biến các món làm sẵn, đồ ăn chín.
+• Bếp Đồ ăn kèm: Chuyên chế biến các món đồ ăn kèm (salad, panchan, đồ chiên...).
+Phân khu Quầy (Front of House)
+• Quầy Bar: Phụ trách pha chế các loại đồ uống trong menu (gọi món riêng) và các món tráng miệng theo yêu cầu.
+• Quầy Line: Khu vực tự phục vụ (self-service) dành cho khách hàng sử dụng vé Buffet Tráng Miệng (bao gồm nước ngọt, kem và các món tráng miệng theo ngày).
+
+6. Cấu Trúc Nhân Sự (Mỗi Ca Làm Việc)
+Mỗi ca làm việc tiêu chuẩn bao gồm các vị trí với vai trò và trách nhiệm được phân định rõ ràng như sau:
+• Admin Hệ Thống:
+o Chịu trách nhiệm quản lý, vận hành và hỗ trợ toàn bộ hệ thống phần mềm của nhà hàng (hệ thống POS, máy in bill, quản lý đơn hàng, và các vấn đề kỹ thuật liên quan).
+• Quản Lý Ca (Shift Manager):
+o Là người chịu trách nhiệm cao nhất trong ca làm việc.
+o Quản lý toàn bộ hoạt động vận hành của quán, giám sát và điều phối công việc của các bộ phận (phục vụ, bếp, thu ngân).
+o Đảm bảo chất lượng dịch vụ, xử lý các phàn nàn hoặc vấn đề phát sinh từ khách hàng.
+o Xác nhận báo cáo kiểm kê cuối ca từ các bộ phận.
+• Thu Ngân (Cashier):
+o Phụ trách khu vực quầy thu ngân.
+o Xử lý quá trình thanh toán, áp dụng chính xác các chương trình khuyến mãi (đã được thiết lập như một "món" trong hệ thống).
+o Quản lý và báo cáo doanh thu cuối ca.
+• Nhân Viên Phục Vụ (Service Staff):
+o Chịu trách nhiệm phục vụ khách hàng tại bàn.
+o Tiếp nhận order, tư vấn menu (bao gồm các loại vé buffet và chương trình ưu đãi).
+o Đảm bảo khu vực bàn ăn sạch sẽ và hỗ trợ khách hàng trong suốt bữa ăn.
+o Cuối ca: Thực hiện kiểm kê và báo cáo tồn kho các mặt hàng thuộc khu vực phục vụ (ví dụ: đồ uống đóng chai/lon, khăn lạnh,...) theo phân công.
+• Nhân Viên Bếp (Kitchen Staff):
+o Làm việc tại các khu vực bếp đã được phân công (Bếp Thịt, Bếp Nóng, Bếp Đồ ăn kèm).
+o Chế biến món ăn theo đúng order từ máy in bill, đảm bảo tốc độ, chất lượng và tiêu chuẩn vệ sinh an toàn thực phẩm.
+o Cuối ca: Thực hiện kiểm kê và báo cáo tồn kho nguyên vật liệu tại khu vực bếp mình phụ trách.
+
