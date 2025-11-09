@@ -19,6 +19,10 @@ public class Order : AggregateRoot
         GuestCount = guestCount;
         Notes = notes;
         Status = OrderStatus.Draft;
+        AdultCount = guestCount; // Default: tất cả là người lớn
+        ChildCount = 0;
+        BuffetType = "Nuong"; // Default: vé buffet nướng
+        HasDessertBuffet = false;
     }
 
     public Guid TableId { get; private set; }
@@ -27,6 +31,11 @@ public class Order : AggregateRoot
     public Staff Staff { get; private set; } = null!;
     public OrderStatus Status { get; private set; }
     public int GuestCount { get; private set; }
+    public int AdultCount { get; private set; }
+    public int ChildCount { get; private set; }
+    public string? ChildHeights { get; private set; } // JSON array: [1.1, 1.2, 0.9] (mét)
+    public string BuffetType { get; private set; } = "Nuong"; // "Nuong" hoặc "NuongLau"
+    public bool HasDessertBuffet { get; private set; }
     public string? Notes { get; private set; }
     public DateTime? ClosedAt { get; private set; }
     public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
@@ -44,6 +53,26 @@ public class Order : AggregateRoot
     {
         GuestCount = guestCount;
         Touch();
+    }
+
+    public void UpdateBuffetInfo(int adultCount, int childCount, string? childHeights, string buffetType, bool hasDessertBuffet)
+    {
+        AdultCount = adultCount;
+        ChildCount = childCount;
+        ChildHeights = childHeights;
+        BuffetType = buffetType;
+        HasDessertBuffet = hasDessertBuffet;
+        GuestCount = adultCount + childCount;
+        Touch();
+    }
+
+    public void UpgradeBuffetType()
+    {
+        if (BuffetType == "Nuong")
+        {
+            BuffetType = "NuongLau";
+            Touch();
+        }
     }
 
     public void UpdateNotes(string? notes)

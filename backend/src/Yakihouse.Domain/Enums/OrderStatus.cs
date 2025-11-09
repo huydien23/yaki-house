@@ -4,8 +4,10 @@ public enum OrderStatus
 {
     Draft = 0,
     Submitted = 1,
-    Locked = 2,
-    Completed = 3,
-    Cancelled = 4
+    InProgress = 2, // Đang chế biến
+    Ready = 3, // Sẵn sàng
+    Locked = 4,
+    Completed = 5,
+    Cancelled = 6
 }
 

@@ -11,12 +11,13 @@ public class MenuItem : AggregateRoot
     {
     }
 
-    internal MenuItem(Guid categoryId, string name, string? description, decimal basePrice)
+    internal MenuItem(Guid categoryId, string name, string? description, decimal basePrice, Guid? kitchenStationId = null)
     {
         CategoryId = categoryId;
         Name = name;
         Description = description;
         BasePrice = basePrice;
+        KitchenStationId = kitchenStationId;
         Status = MenuItemStatus.Available;
     }
 
@@ -25,6 +26,8 @@ public class MenuItem : AggregateRoot
     public string Name { get; private set; } = null!;
     public string? Description { get; private set; }
     public decimal BasePrice { get; private set; }
+    public Guid? KitchenStationId { get; private set; }
+    public KitchenStation? KitchenStation { get; private set; }
     public MenuItemStatus Status { get; private set; }
     public IReadOnlyCollection<MenuOptionGroup> OptionGroups => _optionGroups.AsReadOnly();
 
