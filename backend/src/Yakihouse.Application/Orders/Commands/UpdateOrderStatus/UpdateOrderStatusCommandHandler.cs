@@ -1,4 +1,5 @@
 using MediatR;
+using Yakihouse.Application.Common.Interfaces;
 using Yakihouse.Application.Common.Models;
 using Yakihouse.Domain.Entities;
 using Yakihouse.Domain.Enums;
@@ -10,13 +11,16 @@ public class UpdateOrderStatusCommandHandler : IRequestHandler<UpdateOrderStatus
 {
     private readonly IRepository<Order> _orderRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IOrderNotificationService _notificationService;
 
     public UpdateOrderStatusCommandHandler(
         IRepository<Order> orderRepository,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        IOrderNotificationService notificationService)
     {
         _orderRepository = orderRepository;
         _unitOfWork = unitOfWork;
+        _notificationService = notificationService;
     }
 
     public async Task<Result> Handle(UpdateOrderStatusCommand request, CancellationToken cancellationToken)
@@ -37,6 +41,9 @@ public class UpdateOrderStatusCommandHandler : IRequestHandler<UpdateOrderStatus
 
         _orderRepository.Update(order);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        // Send SignalR notification
+        await _notificationService.NotifyOrderStatusChangedAsync(request.OrderId, request.Status);
 
         return Result.Success();
     }

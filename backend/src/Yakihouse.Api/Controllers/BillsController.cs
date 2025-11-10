@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Yakihouse.Application.Billing.Commands.CreateBill;
+using Yakihouse.Application.Billing.Queries;
 
 namespace Yakihouse.Api.Controllers;
 
@@ -27,10 +28,15 @@ public class BillsController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public Task<IActionResult> GetBill(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetBill(Guid id, CancellationToken cancellationToken)
     {
-        // TODO: Implement GetBill query
-        return Task.FromResult<IActionResult>(Ok());
+        var query = new GetBillByIdQuery(id);
+        var result = await _mediator.Send(query, cancellationToken);
+        
+        if (!result.IsSuccess)
+            return NotFound(result.Error);
+
+        return Ok(result.Data);
     }
 }
 
