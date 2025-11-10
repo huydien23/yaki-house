@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useOrderStore } from '../stores/orderStore';
+import { useOrderSignalR } from '../hooks/useOrderSignalR';
 
 export default function Orders() {
   const { orders, fetchOrders, isLoading } = useOrderStore();
+
+  // Connect to SignalR for real-time updates
+  useOrderSignalR(true);
 
   useEffect(() => {
     fetchOrders();

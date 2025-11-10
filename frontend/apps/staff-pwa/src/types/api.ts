@@ -44,6 +44,7 @@ export interface MenuItemDto {
   basePrice: number;
   categoryId: string;
   categoryName: string;
+  status: string;
   optionGroups: MenuOptionGroupDto[];
 }
 
@@ -73,6 +74,11 @@ export interface CreateOrderCommand {
   tableId: string;
   staffId: string;
   guestCount: number;
+  adultCount: number;
+  childCount: number;
+  childHeights?: string | null;
+  buffetType: string;
+  hasDessertBuffet: boolean;
   notes?: string;
   items: CreateOrderItemDto[];
 }
