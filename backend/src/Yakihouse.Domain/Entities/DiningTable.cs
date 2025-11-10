@@ -12,11 +12,11 @@ public class DiningTable : AggregateRoot
         // EF Core
     }
 
-    public DiningTable(string code, string? zone, int capacity)
+    public DiningTable(string code, int capacity, string? zone = null)
     {
         Code = code;
-        Zone = zone;
         Capacity = capacity;
+        Zone = zone;
         Status = TableStatus.Available;
     }
 
@@ -31,6 +31,14 @@ public class DiningTable : AggregateRoot
         Code = code;
         Zone = zone;
         Capacity = capacity;
+        Touch();
+    }
+
+    public void UpdateDetails(string code, int capacity, string? zone)
+    {
+        Code = code;
+        Capacity = capacity;
+        Zone = zone;
         Touch();
     }
 

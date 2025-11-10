@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Yakihouse.Domain.Entities;
+using Yakihouse.Domain.Enums;
 using Yakihouse.Infrastructure.Persistence;
 
 namespace Yakihouse.Api.Controllers;
@@ -61,6 +63,79 @@ public class TablesController : ControllerBase
         return Ok(table);
     }
 
+    [HttpPost]
+    public async Task<IActionResult> CreateTable([FromBody] CreateTableRequest request, CancellationToken cancellationToken)
+    {
+        // Check if code already exists
+        var codeExists = await _context.DiningTables.AnyAsync(t => t.Code == request.Code, cancellationToken);
+        if (codeExists)
+            return BadRequest(new { message = "Mã bàn đã tồn tại" });
+
+        var table = new DiningTable(request.Code, request.Capacity, request.Zone);
+        _context.DiningTables.Add(table);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return Ok(new { 
+            id = table.Id, 
+            code = table.Code, 
+            zone = table.Zone,
+            capacity = table.Capacity,
+            status = table.Status.ToString()
+        });
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateTable(Guid id, [FromBody] UpdateTableRequest request, CancellationToken cancellationToken)
+    {
+        var table = await _context.DiningTables.FindAsync(new object[] { id }, cancellationToken);
+        if (table == null)
+            return NotFound();
+
+        // Check if new code already exists (excluding current table)
+        if (request.Code != table.Code)
+        {
+            var codeExists = await _context.DiningTables
+                .AnyAsync(t => t.Code == request.Code && t.Id != id, cancellationToken);
+            if (codeExists)
+                return BadRequest(new { message = "Mã bàn đã tồn tại" });
+        }
+
+        table.UpdateDetails(request.Code, request.Capacity, request.Zone);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteTable(Guid id, CancellationToken cancellationToken)
+    {
+        var table = await _context.DiningTables.FindAsync(new object[] { id }, cancellationToken);
+        if (table == null)
+            return NotFound();
+
+        // Check if table is currently occupied
+        if (table.Status == TableStatus.Seated)
+            return BadRequest(new { message = "Không thể xóa bàn đang có khách" });
+
+        _context.DiningTables.Remove(table);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return Ok();
+    }
+
+    [HttpPatch("{id}/status")]
+    public async Task<IActionResult> UpdateTableStatus(Guid id, [FromBody] UpdateTableStatusRequest request, CancellationToken cancellationToken)
+    {
+        var table = await _context.DiningTables.FindAsync(new object[] { id }, cancellationToken);
+        if (table == null)
+            return NotFound();
+
+        table.SetStatus(request.Status);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return Ok(new { status = table.Status.ToString() });
+    }
+
     [HttpGet("zones")]
     public async Task<IActionResult> GetZones(CancellationToken cancellationToken)
     {
@@ -73,4 +148,10 @@ public class TablesController : ControllerBase
         return Ok(zones);
     }
 }
+
+// DTOs
+public record CreateTableRequest(string Code, int Capacity, string? Zone);
+public record UpdateTableRequest(string Code, int Capacity, string? Zone);
+public record UpdateTableStatusRequest(TableStatus Status);
+
 
