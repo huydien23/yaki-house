@@ -11,8 +11,10 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "axios": "^1.13.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
@@ -28,4 +30,3 @@
     "vite": "^5.4.10"
   }
 }
-
