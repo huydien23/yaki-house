@@ -1,63 +1,101 @@
-const palette = [
-  { tone: 50, className: "bg-primary-50 text-primary-900" },
-  { tone: 100, className: "bg-primary-100 text-primary-900" },
-  { tone: 200, className: "bg-primary-200 text-primary-900" },
-  { tone: 300, className: "bg-primary-300 text-primary-900" },
-  { tone: 400, className: "bg-primary-400 text-white" },
-  { tone: 500, className: "bg-primary-500 text-white" },
-  { tone: 600, className: "bg-primary-600 text-white" },
-  { tone: 700, className: "bg-primary-700 text-white" },
-  { tone: 800, className: "bg-primary-800 text-primary-100" },
-  { tone: 900, className: "bg-primary-900 text-primary-100" },
-  { tone: 950, className: "bg-primary-950 text-primary-100" }
-];
+import { Routes, Route, Navigate, Link } from 'react-router-dom';
+import { useAuthStore } from './stores/authStore';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import MenuManagement from './pages/MenuManagement';
+import StaffManagement from './pages/StaffManagement';
+import TablesManagement from './pages/TablesManagement';
+import Reports from './pages/Reports';
 
 function App() {
+  const { isAuthenticated, user, logout } = useAuthStore();
+
+  if (!isAuthenticated) {
+    return (
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    );
+  }
+
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-16">
-      <header className="space-y-3">
-        <span className="inline-flex items-center gap-2 rounded-full bg-primary-100 px-3 py-1 text-sm font-semibold text-primary-700">
-          Yakihouse Platform
-        </span>
-        <h1 className="font-display text-4xl font-semibold text-primary-900 md:text-5xl">
-          Admin Console
-        </h1>
-        <p className="max-w-3xl text-lg text-primary-700">
-          Khởi tạo giao diện quản trị để theo dõi doanh thu, cấu hình menu, phân ca nhân viên
-          và giám sát bếp theo thời gian thực với nền màu Cerulean chuẩn thương hiệu.
-        </p>
-      </header>
+    <div className="flex h-screen bg-gray-100">
+      {/* Sidebar */}
+      <aside className="w-64 bg-primary-800 text-white">
+        <div className="p-6">
+          <h1 className="text-2xl font-bold">Yakihouse</h1>
+          <p className="text-sm text-primary-200">Admin Console</p>
+        </div>
 
-      <main className="grid gap-8 md:grid-cols-2">
-        <section className="card space-y-3 border border-primary-100">
-          <h2 className="text-xl font-semibold text-primary-800">Lộ trình UI</h2>
-          <ul className="list-inside list-disc space-y-2 text-primary-700">
-            <li>Tạo layout tổng thể với sidebar điều hướng và header trạng thái.</li>
-            <li>Kết nối bảng dữ liệu bàn, ca, order qua API .NET Core.</li>
-            <li>Thiết lập trang dashboard với biểu đồ doanh thu & KPI phục vụ.</li>
-          </ul>
-        </section>
+        <nav className="mt-6">
+          <Link
+            to="/admin"
+            className="flex items-center px-6 py-3 hover:bg-primary-700 transition-colors"
+          >
+            <span className="mr-3">📊</span>
+            <span>Dashboard</span>
+          </Link>
+          <Link
+            to="/admin/menu"
+            className="flex items-center px-6 py-3 hover:bg-primary-700 transition-colors"
+          >
+            <span className="mr-3">🍱</span>
+            <span>Menu</span>
+          </Link>
+          <Link
+            to="/admin/staff"
+            className="flex items-center px-6 py-3 hover:bg-primary-700 transition-colors"
+          >
+            <span className="mr-3">👥</span>
+            <span>Nhân viên</span>
+          </Link>
+          <Link
+            to="/admin/tables"
+            className="flex items-center px-6 py-3 hover:bg-primary-700 transition-colors"
+          >
+            <span className="mr-3">🪑</span>
+            <span>Bàn ăn</span>
+          </Link>
+          <Link
+            to="/admin/reports"
+            className="flex items-center px-6 py-3 hover:bg-primary-700 transition-colors"
+          >
+            <span className="mr-3">📈</span>
+            <span>Báo cáo</span>
+          </Link>
+        </nav>
+      </aside>
 
-        <section className="card space-y-4 bg-gradient-to-br from-primary-100 via-white to-primary-50">
-          <h2 className="text-xl font-semibold text-primary-800">Màu Cerulean</h2>
-          <p className="text-primary-700">
-            Tailwind đã được cấu hình với bảng màu Cerulean (50 → 950) như hình. Dùng các lớp
-            <code className="ml-1 rounded bg-primary-100 px-1 text-sm text-primary-800">bg-primary-600</code>,
-            <code className="ml-1 rounded bg-primary-100 px-1 text-sm text-primary-800">text-primary-900</code>
-            để thống nhất thương hiệu trong toàn dự án.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {palette.map((swatch) => (
-              <span
-                key={swatch.tone}
-                className={`flex h-10 min-w-[4.5rem] items-center justify-center rounded-xl px-3 text-sm font-semibold shadow ${swatch.className}`}
-              >
-                {swatch.tone}
-              </span>
-            ))}
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Header */}
+        <header className="bg-white shadow-sm">
+          <div className="px-6 py-4 flex items-center justify-between">
+            <h2 className="text-xl font-semibold text-gray-800">
+              Chào mừng, {user?.fullName}
+            </h2>
+            <button
+              onClick={logout}
+              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            >
+              Đăng xuất
+            </button>
           </div>
-        </section>
-      </main>
+        </header>
+
+        {/* Content */}
+        <main className="flex-1 overflow-auto">
+          <Routes>
+            <Route path="/admin" element={<Dashboard />} />
+            <Route path="/admin/menu" element={<MenuManagement />} />
+            <Route path="/admin/staff" element={<StaffManagement />} />
+            <Route path="/admin/tables" element={<TablesManagement />} />
+            <Route path="/admin/reports" element={<Reports />} />
+            <Route path="*" element={<Navigate to="/admin" replace />} />
+          </Routes>
+        </main>
+      </div>
     </div>
   );
 }
