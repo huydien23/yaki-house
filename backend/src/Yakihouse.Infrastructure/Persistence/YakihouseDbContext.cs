@@ -10,6 +10,7 @@ public class YakihouseDbContext : DbContext
     {
     }
 
+    public DbSet<User> Users => Set<User>();
     public DbSet<Role> Roles => Set<Role>();
     public DbSet<Staff> Staff => Set<Staff>();
     public DbSet<Shift> Shifts => Set<Shift>();

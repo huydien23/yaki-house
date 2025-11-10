@@ -28,10 +28,16 @@ public static class DependencyInjection
         // Register repositories
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         // Register query services
         services.AddScoped<IOrderQueryService, OrderQueryService>();
         services.AddScoped<IKitchenTicketService, KitchenTicketService>();
+        // Note: IOrderNotificationService registered in API layer to access SignalR hubs
+
+        // Register authentication services
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
         return services;
     }
